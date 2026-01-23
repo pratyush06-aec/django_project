@@ -37,131 +37,73 @@
         {% comment %} <nav class="navbar navbar-expand-lg bg-body-tertiary"> {% endcomment %}
         <div>
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}" aria-label="Go to homepage">
-              <strong>Dutta Stores</strong>
-            </a>
+          <div class="container-fluid d-flex align-items-center">
 
+            <!-- LEFT: Search -->
+            <div class="d-flex align-items-center gap-3">
 
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <li class="nav-item d-flex align-items-center ms-3">
-                <button class="btn btn-outline-secondary btn-sm"
-                        id="themeToggle"
-                        type="button"
-                        aria-label="Toggle theme">
-                  ☀️
-                </button>
-              </li>
+              <!-- Search -->
+              <input class="form-control" type="search" placeholder="Search" style="width: 220px;">
+              <button class="btn btn-outline-success">Search</button>
 
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <!-- Theme toggle -->
+              <button class="btn btn-outline-secondary btn-sm"
+                      id="themeToggle"
+                      aria-label="Toggle theme">
+                ☀️
+              </button>
+
+              <!-- Profile dropdown -->
+              {% if user.is_authenticated %}
+              <div class="dropdown">
+                <a class="nav-link dropdown-toggle d-flex align-items-center"
+                  href="#"
+                  data-bs-toggle="dropdown">
+                  <div class="profile-icon">
+                    {{ user.username|first|upper }}
+                  </div>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li class="dropdown-header">Hi, {{ user.username }}</li>
+                  <li><a class="dropdown-item" href="{% url 'dashboard' %}">My Account</a></li>
+                  <li><a class="dropdown-item" href="{% url 'cart' %}">My Cart</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li>
+                    <form method="post" action="{% url 'account_logout' %}">
+                      {% csrf_token %}
+                      <button class="dropdown-item text-danger">Logout</button>
+                    </form>
+                  </li>
+                </ul>
+              </div>
+              {% endif %}
+
+            </div>
+
+            <!-- CENTER: Brand -->
+            <div class="mx-auto text-center">
+              <a class="navbar-brand fw-bold" href="{% url 'home' %}">
+                Dutta Stores
+              </a>
+            </div>
+
+            <!-- RIGHT: Nav items -->
+            <div class="d-flex align-items-center gap-3">
+              <ul class="navbar-nav flex-row gap-3 align-items-center mb-0">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/about"
-                    >About</a
-                  >
+                  <a class="nav-link" href="/contact">Contact</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/arrivals">Arrivals</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/lists">Lists</a>
                 </li>
-                <li class="nav-item dropdown">
-                  <a
-                    class="nav-link dropdown-toggle"
-                    href="/arrivals"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    Arrivals
-                  </a>
-                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li>
-                      <a class="dropdown-item" href="#">Another action</a>
-                    </li>
-                    <li><hr class="dropdown-divider" /></li>
-                    <li>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </li>
-                  </ul>
-                </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/contact">Contact</a>
+                  <a class="nav-link active" href="/about">About</a>
                 </li>
-                {% if user.is_authenticated %}
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle d-flex align-items-center"
-                      href="#"
-                      id="accountDropdown"
-                      role="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false">
-
-                      <!-- Profile icon -->
-                      <div class="profile-icon">
-                        {{ user.username|first|upper }}
-                      </div>
-                    </a>
-
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
-                      <li class="dropdown-header">
-                        Hi, {{ user.username }}
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="{% url 'dashboard' %}">
-                          My Account
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="{% url 'cart' %}">
-                          My Cart
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          My Addresses
-                        </a>
-                      </li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li>
-                        <form method="post" action="{% url 'account_logout' %}">
-                          {% csrf_token %}
-                          <button type="submit" class="dropdown-item text-danger">
-                            Logout
-                          </button>
-                        </form>
-                      </li>
-                    </ul>
-                  </li>
-                  {% else %}
-                  <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">Login</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
-                  </li>
-                  {% endif %}
               </ul>
-              <form class="d-flex" role="search">
-                <input
-                  class="form-control me-2"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                />
-                <button class="btn btn-outline-success" type="submit">
-                  Search
-                </button>
-              </form>
             </div>
           </div>
         </nav>
