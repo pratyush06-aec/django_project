@@ -3,6 +3,7 @@ from django.shortcuts import render
 from datetime import datetime
 from home.models import Contact
 from django.contrib import messages
+from django.shortcuts import redirect
 
 def home(request):
     # return HttpResponse('this is home-page')
@@ -38,4 +39,26 @@ def about(request):
 
 # def about(request):
 #     return HttpResponse('this is about page')
+
+def cart(request):
+    cart = request.session.get("cart", {})
+    return render(request, "cart.html", {"cart": cart})
+
+def add_to_cart(request):
+    if request.method == "POST":
+        cart = request.session.get("cart", {})
+
+        product_id = request.POST["id"]
+        name = request.POST["name"]
+        price = request.POST["price"]
+
+        cart[product_id] = {
+            "name": name,
+            "price": price,
+        }
+
+        request.session["cart"] = cart
+
+    return redirect("cart")
+
 

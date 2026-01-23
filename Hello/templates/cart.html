@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block body %}
+
+<div class="container py-5">
+  <h2 class="mb-4">My Cart 🛒</h2>
+
+  {% if cart %}
+    <ul class="list-group">
+      {% for id, item in cart.items %}
+        <li class="list-group-item d-flex justify-content-between">
+          <span>{{ item.name }}</span>
+          <strong>₹{{ item.price }}</strong>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>.Your cart is empty</p>
+  {% endif %}
+</div>
+
+{% endblock %}
