@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Contact{% endblock title %} 
+{% block body %}
+
+    {% if messages %}
+        <div class="container-fluid">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show text-center" role="alert">
+            <p><strong>{{ message }}</strong></p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+        </div>
+        {% endif %}
+
+
+
+    <div class="container-fluid">
+        <img
+        src="/static/assets/contacts_catalog.jpeg"
+        class="d-block carousel-img"
+        height="500px"
+        ,
+        width="1490px"
+        justify-content="cover"
+        alt="contact_catalog"
+        />
+    </a>
+    </div>
+
+    <div class="container-fluid my-3">
+      <h2 class="text-center container-fluid mb-4">Contact Us</h2>
+      <form class="row g-3" method="post" action="/contact/">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col">
+                <lable for="inputLastName" class="form-lable">Last Name</lable>
+                <input name="last_name" type="text" class="form-control" aria-label="Last name" placeholder="Enter your last name">
+            </div>
+            <div class="col">
+                <lable for="inputFirstName" class="form-lable">First Name</lable>
+                <input name="first_name" type="text" class="form-control" aria-label="First name" placeholder="Enter your first name">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="inputEmail4" class="form-label">Email</label>
+            <input name="email" type="email" class="form-control" id="inputEmail4" placeholder="Enter your email"></input>
+        </div>
+        <div class="col-md-6">
+            <lable for="inputPhoneNo" class="form-lable">Phone No</lable>
+            <input name="phone" type="phone no" class="form-control" id="inputPhoneNo" placeholder="Enter your phone number"></input>
+        </div>
+        <div class="form-floating">
+            <label for="floatingTextarea2"></label>
+            <textarea name="description" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+        </div>
+        <div class="col-12 text-center">
+            <button type="submit" class="btn btn-primary">Submit your message</button>
+        </div>
+      </form>
+    </div>
+{% endblock body %}

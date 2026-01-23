@@ -1,0 +1,115 @@
+.footer {
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+}
+
+.footer-title {
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--bs-body-color);
+}
+
+.footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-list li {
+  margin-bottom: 8px;
+  color: var(--bs-secondary-color);
+}
+
+.footer-list li a {
+  text-decoration: none;
+  color: var(--bs-secondary-color);
+}
+
+.footer-list li a:hover {
+  color: #0d6efd;
+}
+
+.see-all {
+  font-size: 13px;
+  color: var(--bs-primary);
+  text-decoration: none;
+}
+
+.footer-bottom {
+  border-top: 2px solid var(--bs-border-color);
+  padding: 15px 0;
+  font-size: 13px;
+  color: var(--bs-secondary-color);
+}
+
+/* Social icons wrapper — spacing control */
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* spacing between icons */
+}
+
+.social-icons a {
+  width: 48px;
+  height: 48px;
+  font-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--bs-secondary-bg);
+  color: var(--bs-body-color);
+  transition: all 0.2s ease;
+}
+
+.footer-social i {
+  font-size: 18px !important;
+}
+
+.social-icons a:hover {
+  background-color: var(--bs-primary);
+  color: #fff;
+  transform: translateY(-2px) scale(1.05);
+}
+
+[data-bs-theme="dark"] .footer {
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+}
+
+.faq-section {
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+}
+
+.faq-section h2 {
+  font-weight: 600;
+}
+
+.accordion-item {
+  background-color: var(--bs-secondary-bg);
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.accordion-button {
+  background-color: transparent;
+  color: var(--bs-body-color);
+  font-weight: 500;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: transparent;
+  color: var(--bs-primary);
+  box-shadow: none;
+}
+
+.accordion-button::after {
+  filter: invert(var(--bs-body-color));
+}
+
+.accordion-body {
+  color: var(--bs-secondary-color);
+}
+

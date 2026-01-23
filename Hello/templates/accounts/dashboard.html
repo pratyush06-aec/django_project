@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block body %}
+
+<div class="container my-5">
+  <div class="row">
+    <!-- Left menu -->
+    <div class="col-md-3">
+      <div class="list-group">
+        <a class="list-group-item active">My Account</a>
+        <a class="list-group-item">My Orders</a>
+        <a class="list-group-item">My Addresses</a>
+        <a class="list-group-item">Account Settings</a>
+      </div>
+    </div>
+
+    <!-- Right content -->
+    <div class="col-md-9">
+      <div class="card">
+        <div class="card-body">
+          <h4>Welcome, {{ user.username }} 👋</h4>
+          <p>Email: {{ user.email|default:"Not added yet" }}</p>
+
+          <hr>
+
+          <p>This is your personal dashboard.</p>
+          <p>You can show orders, addresses, profile data here.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
