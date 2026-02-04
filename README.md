@@ -61,7 +61,8 @@ It features product listings, cart functionality, authentication, FAQs, and a po
 
 <hr> 
 
-🛠️ Tech Stack
+🛠️ Tech Stack:
+
 Backend:
 -> Python 3
 -> Django 6.0.1
